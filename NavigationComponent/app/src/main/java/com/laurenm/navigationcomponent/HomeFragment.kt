@@ -24,10 +24,14 @@ class HomeFragment : Fragment() {
 
         val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
 
-        // FIXME (removes top nav arrow and add fragment name to toolbar)
-        // Custom navigation listener allows me to change the title
 
-        // addOnNavigatedListener no longer exists. Replaced by addOnDestinationChangedListener
+        // Custom navigation listener allows me to change the title
+        navHostFragment.navController.addOnDestinationChangedListener {
+                _, destination, _ ->
+            toolbar.title = destination.label.toString()
+        }
+
+        // Old code - addOnNavigatedListener no longer exists. Replaced by addOnDestinationChangedListener
 //        navHostFragment.navController.addOnNavigatedListener { _, destination ->
 //            toolbar.title = destination.label
 //        }
